@@ -26,4 +26,12 @@ async function loginAdmin(req, res) {
     // 200 = alteração concluída com sucesso
 }
 
-export default { insertAdmin, loginAdmin }
+async function listUsers(req, res) {  
+    
+    const users = await serviceAdmin.listUsers()
+    
+        res.status(200).json(users) // devolvendo os dados para quem solicitou
+    // 200 = alteração concluída com sucesso
+}
+
+export default { insertAdmin, loginAdmin, listUsers }

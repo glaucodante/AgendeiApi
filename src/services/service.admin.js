@@ -11,7 +11,7 @@ async function insertAdmin(name, email, password) {
 
     const admin = await repoAdmin.insertAdmin(name, email, hashPassword)
 
-    admin.token = jwt.createToken(admin.id_admin)
+    admin.token = jwt.createTokenAdmin(admin.id_admin)
 
     return admin // devolvendo dados do usuário
 }
@@ -29,7 +29,7 @@ async function loginAdmin( email, password) {
         if( await bcrypt.compare(password, admin.password)) {
             delete admin.password // deleta a senha para que não retorne-a no body
 
-            admin.token = jwt.createToken(admin.id_admin)
+            admin.token = jwt.createTokenAdmin(admin.id_admin)
 
             return admin
 
@@ -41,4 +41,12 @@ async function loginAdmin( email, password) {
     return admin // devolvendo com o id do usuário
 }
 
-export default { insertAdmin, loginAdmin }
+
+async function listUsers() {
+   
+    const users = await repoAdmin.listUsers()
+
+    return users
+}
+
+export default { insertAdmin, loginAdmin, listUsers }

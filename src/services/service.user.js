@@ -22,7 +22,7 @@ async function login( email, password) {
     
     const user = await repoUser.listByEmail(email)
 
-    if(user.length == 0)
+    if(user.length === 0)
         return []
     else {
         // comparando a senha com o hash salvo no BD  

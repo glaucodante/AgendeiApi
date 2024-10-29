@@ -23,7 +23,7 @@ async function login(req, res) {
 
     const user = await serviceUser.login( email, password)
 
-    if(user.length == 0)
+    if(user.length === 0)
         res.status(401).json({error: 'E-mail ou senha inválida'})
     else 
         res.status(200).json(user) // devolvendo os dados para quem solicitou

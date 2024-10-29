@@ -24,7 +24,7 @@ async function insert(name, email, password) {
             
             const user = await query(sql, [email])  // fazendo a consulta no BD
 
-            if(user.length == 0) 
+            if(user.length === 0) 
                 return []
             else         
                 return user[0]

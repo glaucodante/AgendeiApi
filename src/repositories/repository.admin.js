@@ -25,10 +25,22 @@ async function insertAdmin(name, email, password) {
                 
                 const admin = await query(sql, [email])  // fazendo a consulta no BD
     
-                if(admin.length == 0) 
+                if(admin.length === 0) 
                     return []
                 else         
                     return admin[0]
         }
 
-        export default { insertAdmin, listByEmailAdmin }
+
+        
+    async function listUsers() {
+        // selecione todos os campos na tabela users onde o usuário tem um parâmetro igual ao passado           
+            let sql = `select id_user, name, email from users order by name`
+             
+                
+                const users = await query(sql, [])  // fazendo a consulta no BD
+    
+                    return users
+        }
+
+        export default { insertAdmin, listByEmailAdmin, listUsers }

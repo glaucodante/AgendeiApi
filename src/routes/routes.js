@@ -34,13 +34,21 @@ router.post('/users/login', controllerUser.login)
 router.get('/users/profile', jwt.validateToken, controllerUser.profile)
 
 // Rotas do Admin
-router.post('/admin/login', controllerAdmin.loginAdmin)
 router.post('/admin/register', controllerAdmin.insertAdmin)
-router.get('/admin/appointments', jwt.validateToken, controllerAppointment.listByAdmin)
+router.post('/admin/login', controllerAdmin.loginAdmin)
+router.get('/admin/appointments', jwt.validateToken, controllerAppointment.listByAdmin) // lista de pacientes acessada pelo admin listUserByAdmin
+router.get('/admin/users', jwt.validateToken, controllerAdmin.listUsers) // listar usuários
 
-// Appointments (reservas)
+router.get('/admin/appointments/:id_appointment', jwt.validateToken, controllerAppointment.listIdAppointment)
+
+router.post('/admin/appointments', jwt.validateToken, controllerAppointment.insertAppointmentAdmin) // inserir novo agendamento (tela de administração)
+
+router.put('/admin/appointments/:id_appointment', jwt.validateToken, controllerAppointment.editAppointmentAdmin) // editar agendamento
+
+
+// Appointments (agendamento)
 router.get('/appointments',jwt.validateToken, controllerAppointment.listByUser)
 router.post('/appointments',jwt.validateToken, controllerAppointment.insertAppointment)
-// Cancelar reserva
+// Cancelar agendamento
 router.delete('/appointments/:id_appointment',jwt.validateToken, controllerAppointment.deleteAppointment)
 export default router
